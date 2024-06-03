@@ -20,7 +20,6 @@ const attachCookiesToResponse = ({ res, user }) => {
     secure: process.env.NODE_ENV === "production",
     signed: true,
   });
-  res.status(StatusCodes.CREATED).json({ user });
 };
 
 module.exports = { createJWT, isValidToken, attachCookiesToResponse };
