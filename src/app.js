@@ -34,8 +34,7 @@ app.use("/api/v1", router);
 
 //Stripe webhook
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const endpointSecret =
-  "whsec_ca35d17159c797210d2a463e2743bdc33437786dbfad1f90f7cc38bf0c3c643d";
+const endpointSecret = process.env.STRIPE_END_POINT;
 
 app.post(
   "/webhook",
