@@ -39,10 +39,13 @@ const productSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Please add a user"],
     },
-    images: {
-      type: [String],
-      default: ["https://cdn-icons-png.flaticon.com/512/149/149071.png"],
-    },
+    images: [
+      {
+        type: String,
+        required: [true, "Please add an image"],
+        default: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+      },
+    ],
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,

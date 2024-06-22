@@ -7,6 +7,7 @@ const brandRouter = require("./brandRouter");
 const colorRouter = require("./colorRouter");
 const reviewRouter = require("./reviewRouter");
 const orderRouter = require("./orderRouter,");
+const couponRouter = require("./couponRouter");
 const router = Router();
 router.use("/auth", authRouter);
 router.use("/users", userRouter);
@@ -16,5 +17,6 @@ router.use("/brands", brandRouter);
 router.use("/colors", colorRouter);
 router.use("/reviews", reviewRouter);
 router.use("/orders", orderRouter);
+router.use("/coupons", couponRouter);
 
 module.exports = router;

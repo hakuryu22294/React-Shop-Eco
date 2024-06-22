@@ -3,4 +3,8 @@ const orderController = require("../controllers/ordercontroller");
 const { checkLogin } = require("../middlewares/checkPermission");
 const orderRouter = Router();
 orderRouter.post("/", checkLogin, orderController.createOrder);
+orderRouter.get("/", checkLogin, orderController.getOrders);
+orderRouter.get("/sales/sum", checkLogin, orderController.getSalesSum);
+orderRouter.get("/:id", checkLogin, orderController.getOrder);
+orderRouter.put("/:id", checkLogin, orderController.updateOrder);
 module.exports = orderRouter;

@@ -6,6 +6,7 @@ const Brand = require("../models/BrandSchema");
 
 class ProductController {
   createProduct = asyncHandler(async (req, res) => {
+    const convertImgs = req.files.map((file) => file.path);
     const {
       name,
       description,
@@ -13,7 +14,6 @@ class ProductController {
       brand,
       sizes,
       colors,
-      user,
       price,
       totalQty,
     } = req.body;
@@ -39,6 +39,7 @@ class ProductController {
       user: req.userAuthId,
       price,
       totalQty,
+      images: convertImgs,
     });
     res.json({
       status: "success",

@@ -8,7 +8,11 @@ class CategoryController {
     const categoryExists = await Category.findOne({ name });
     if (categoryExists)
       throw CustomApiError.BadRequestError("Category already exists");
-    const category = await Category.create({ name, user: req.userAuthId });
+    const category = await Category.create({
+      name,
+      user: req.userAuthId,
+      image: req.file.path,
+    });
     res.json({
       status: "success",
       message: "Category created successfully",
