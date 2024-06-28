@@ -7,6 +7,8 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import { Toaster } from "react-hot-toast";
 import AuthRouter from "./components/AuthRouter/AuthRouter";
 import AdminRouter from "./components/AuthRouter/AdminRouter";
+import AddProduct from "./components/Admin/Products/AddProduct";
+import AddCategory from "./components/Admin/Categories/AddCategory";
 
 function App() {
   return (
@@ -23,7 +25,10 @@ function App() {
                 </AdminRouter>
               </AuthRouter>
             }
-          ></Route>
+          >
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="add-category" element={<AddCategory />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registers />} />
           <Route path="/customer-profile" element={<CustomerProfile />} />

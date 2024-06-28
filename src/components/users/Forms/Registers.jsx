@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerAction } from "../../../redux/slices/users/usersSlice";
+import {
+  clearMessage,
+  registerAction,
+} from "../../../redux/slices/users/usersSlice";
+import { toast } from "react-hot-toast";
 
 const Registers = () => {
   const dispatch = useDispatch();
@@ -12,24 +16,34 @@ const Registers = () => {
     password: "",
     passwordConfirm: "",
   });
-  //---Destructuring---
   const { name, email, password, passwordConfirm } = formData;
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log(formData);
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(registerAction({ name, email, password, passwordConfirm }));
   };
-  //select store data
 
-  //select store data
-  const { loading, userAuth } = {};
+  const { loading, error, success, user } = useSelector(
+    (state) => state?.users
+  );
+  useEffect(() => {
+    if (success) {
+      toast.success(success);
+      dispatch(clearMessage());
+    }
+    if (error) {
+      toast.error(error);
+      dispatch(clearMessage());
+    }
+  }, [success, error]);
   //redirect
-  if (userAuth?.userInfo?.status) {
-    window.location.href = "/login";
-  }
+  useEffect(() => {
+    if (user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   return (
     <>

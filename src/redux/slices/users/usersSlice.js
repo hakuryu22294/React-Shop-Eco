@@ -6,13 +6,15 @@ const initialState = {
   error: null,
   success: null,
   users: [],
-  user: {},
+  user: null,
   profile: {},
   userAuth: {
     loading: false,
     error: null,
     success: null,
-    userInfo: {},
+    userInfo: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null,
   },
 };
 
@@ -29,6 +31,7 @@ export const registerAction = createAsyncThunk(
         password,
         passwordConfirm,
       });
+
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error?.response?.data.msg);
@@ -88,6 +91,7 @@ const userSlice = createSlice({
       })
       .addCase(registerAction.fulfilled, (state, action) => {
         state.loading = false;
+        state.user = action.payload;
         state.success = action.payload?.message;
       })
       .addCase(registerAction.rejected, (state, action) => {

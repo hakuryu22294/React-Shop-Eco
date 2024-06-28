@@ -43,9 +43,8 @@ const Login = () => {
   useEffect(() => {
     if (userInfo?.user?.role === "admin") {
       navigate("/admin");
-      console.log(userInfo?.user?.role);
-    } else {
-      navigate("/login");
+    } else if (userInfo?.user?.role === "user") {
+      navigate("/customer-profile");
     }
   }, [userInfo]);
 
