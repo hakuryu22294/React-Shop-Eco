@@ -63,6 +63,7 @@ class AuthController {
         name: user.name ? user.name : user.email,
         email: user.email,
         role: user.role,
+        
       },
     });
   });

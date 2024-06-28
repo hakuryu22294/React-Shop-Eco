@@ -13,10 +13,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   allowedFormats: ["jpg", "png", "jpeg"],
-  params: async (req, file) => {
-    return {
-      folder: req.folder,
-    };
+  params: {
+    folder: "Fashion-Shop",
   },
 });
 const upload = multer({ storage });

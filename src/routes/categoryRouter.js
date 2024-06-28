@@ -1,30 +1,28 @@
 const { Router } = require("express");
-const categoryController = require("../controllers/categoryController");
+const CategoryController = require("../controllers/categoryController");
 const { checkLogin, checkAdmin } = require("../middlewares/checkPermission");
 const upload = require("../config/fileUpload");
 const categoryRouter = Router();
-const { categoriesFolder } = require("../config/uploadFolder");
 categoryRouter.post(
   "/",
   checkLogin,
   checkAdmin,
-  categoriesFolder,
-  upload.single("image"),
-  categoryController.createCategory
+  upload.single("file"),
+  CategoryController.createCategory
 );
-categoryRouter.get("/", categoryController.getAllCategories);
-categoryRouter.get("/:id", categoryController.getCategory);
+categoryRouter.get("/", CategoryController.getAllCategories);
+categoryRouter.get("/:id", CategoryController.getCategory);
 categoryRouter.put(
   "/:id",
   checkLogin,
   checkAdmin,
-  categoryController.updateCategory
+  CategoryController.updateCategory
 );
 categoryRouter.delete(
   "/:id/delete",
   checkLogin,
   checkAdmin,
-  categoryController.deleteCategory
+  CategoryController.deleteCategory
 );
 
 module.exports = categoryRouter;
